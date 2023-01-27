@@ -14,7 +14,8 @@ def parse():
 
     # I used `w` flag because if I will append items, I need to take care about duplicates.
     # It's just a headache in this test task...
-    json.dump(list(items), open('shopkz/parser/smartphones.json', 'w'))
+    with open('shopkz/parser/smartphones.json', 'w') as file:
+        json.dump(list(items), file)
 
     return 'All items are parsed and saved!'
 
@@ -22,7 +23,8 @@ def parse():
 @app.route('/smartphones/', methods=['GET'])
 def show():
     try:
-        items = json.load(open('shopkz/parser/smartphones.json', 'r'))
+        with open('shopkz/parser/smartphones.json', 'r') as file:
+            items = json.load(file)
     except FileNotFoundError:
         return {'hint': f'Did you parsed items by going to `{request.host_url}/smartphones/parse/`?'}
 
