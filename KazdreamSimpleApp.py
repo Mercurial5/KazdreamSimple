@@ -21,16 +21,16 @@ def parse():
 
 @app.route('/smartphones/', methods=['GET'])
 def show():
-    items = json.load(open('shopkz/parser/smartphones.json', 'r'))
+    try:
+        items = json.load(open('shopkz/parser/smartphones.json', 'r'))
+    except FileNotFoundError:
+        return {'hint': f'Did you parsed items by going to `{request.host_url}/smartphones/parse/`?'}
 
     price = request.args.get('price')
     if price:
         items = [item for item in items if item['price'] == int(price)]
 
     response = {'items': items, 'amount': len(items)}
-
-    if len(items) == 0:
-        response['hint'] = f'Did you parsed items by going to `{request.host_url}/smartphones/parse/`?'
 
     return response
 
