@@ -26,7 +26,7 @@ class Parser:
 
             # This way we don't need to wait when all the items are parsed.
             # There are a lot of downsides (when we wait for all items and only then return) so I used yield instead.
-            # Although in this case I anyway turn everything to list in the `main.py`.
+            # Although in this case I anyway turn everything to list when saving items in smartphones.
             yield from items
 
             page += 1
