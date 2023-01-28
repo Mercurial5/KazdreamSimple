@@ -26,7 +26,7 @@ def show():
         with open('shopkz/parser/smartphones.json', 'r') as file:
             items = json.load(file)
     except FileNotFoundError:
-        return {'hint': f'Did you parsed items by going to `{request.host_url}/smartphones/parse/`?'}
+        return {'hint': f'Did you parsed items by going to `{request.host_url}smartphones/parse/`?'}
 
     price = request.args.get('price')
     if price:
