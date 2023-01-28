@@ -1,5 +1,6 @@
 import json
 import re
+from typing import Iterator
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,7 +13,7 @@ class Parser:
         'User-Agent': 'beep-boop shopkz let me to your website'
     }
 
-    def get_items(self) -> list[dict]:
+    def get_items(self) -> Iterator[dict]:
         """
         Scraps all the smartphones.
 
